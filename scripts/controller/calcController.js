@@ -48,7 +48,7 @@ class calcController {
     }
     getLastOperation(){
 
-        return this._operation[this._operation.length-1];
+        return this._operation[this._operation.length - 1];
 
     }
 
@@ -68,7 +68,7 @@ class calcController {
 
         console.log('A', isNaN(this.getLastOperation()));
 
-        if (isNaN(this.getLastOperation())) {                // string
+        if (isNaN(this.getLastOperation())) {                
 
             if (this.isOperator(value)) {
                     //trocar o operadorador da calculadora
@@ -159,13 +159,13 @@ class calcController {
 
             this.addEventListenerAll(btn, "click drag", e => {
 
-                let textBtn = (btn.className.baseVal.replace("btn-",""));
+                let textBtn = btn.className.baseVal.replace("btn-", "");
 
-                this.execBtn();
+                this.execBtn(textBtn);
 
             });
 
-            this.addEventListenerAll(btn, "mouseover, mouseup, mousedown", e => {
+            this.addEventListenerAll(btn, 'mouseover, mouseup, mousedown', e => {
 
                 btn.style.cursor = 'pointer';
             });
