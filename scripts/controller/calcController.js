@@ -1,7 +1,7 @@
 class calcController {
 
     constructor(){
-        this.operation = [];
+        this._operation = [];
         this._locate = 'pt-BR'
         this._displayCalcEl = document.querySelector("#display");
         this._dateEl = document.querySelector("#data");
@@ -48,7 +48,7 @@ class calcController {
     }
     getLastOperation(){
 
-        return this._operation[this._operation.length - 1];
+        return this._operation[this._operation.length- 1];
 
     }
 
