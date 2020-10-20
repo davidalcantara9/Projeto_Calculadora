@@ -1,6 +1,9 @@
 class calcController {
 
     constructor(){
+
+        this.lastOperator = '';
+        this.lastOperator = '';
         this._operation = [];
         this._locate = 'pt-BR'
         this._displayCalcEl = document.querySelector("#display");
@@ -82,17 +85,25 @@ class calcController {
         }
     }
 
+    getResult(){
+
+
+            return eval(this._operation.join(""));
+
+
+
+    }
     calc(){
         let last = '';
 
         if(this._operation.length > 3 ){
+             last = this._operation.pop();
 
-            let last = this._operation.pop();
-
+            this._lastNumber = this.getResult();
         }
 
 
-        let result = eval(this._operation.join(""));
+        let result = this.getResult();
 
         if (last == '%' ){
 
@@ -126,6 +137,33 @@ class calcController {
 
 
     }
+    getLastItem(isOperator = true){
+
+        let lastItem;
+
+        for (let i =  this._operation.length - 1; i >= 0; i--){
+
+            if (isOperator){
+
+            
+                if (this.isOperator(this._operation[i])){
+                lastItem = this._operation[i];
+                break;
+
+ 
+                }
+            }else {
+
+                if (!this.isOperator(this._operation[i])){
+                    lastItem = this._operation[i];
+                    break;
+                }
+            }
+        }
+        return lastItem;
+        
+
+    }
 
     SetLastNumberToDisplay(){
 
@@ -137,14 +175,14 @@ class calcController {
                 lastNumber = this._operation[i];
                 break;
 
-
+ 
             }
 
         }
 
         if (!lastNumber) lastNumber = 0;
         this.displayCalc = lastNumber;
-
+        
     }
 
     addOperation(value){
